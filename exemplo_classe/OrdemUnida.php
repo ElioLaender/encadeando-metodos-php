@@ -24,7 +24,7 @@ class OrdemUnida{
     function __construct($nomePelotao = "pelotão")
     {
     
-        $this->nomePelotao = $nomePelotao;  
+            $this->nomePelotao = $nomePelotao;  
 
     }
 
@@ -32,7 +32,7 @@ class OrdemUnida{
     private function setHistorico($comando)
     {
     
-    array_push($this->historico, $comando);
+    	    array_push($this->historico, $comando);
 
     }
 
@@ -40,9 +40,9 @@ class OrdemUnida{
     public function advertencia()
     {
 
-    $this->setHistorico('advertência');
-        $this->comandos .= "- Atenção ".$this->nomePelotao."!<br/>";
-        return $this;
+	    $this->setHistorico('advertência');
+		$this->comandos .= "- Atenção ".$this->nomePelotao."!<br/>";
+		return $this;
 
     }
 
@@ -50,45 +50,45 @@ class OrdemUnida{
     public function marche()
     {
     
-    $this->setHistorico('marche');
-        $this->comandos .= "- Marche!"."<br/>";      
-        return $this;
+	    $this->setHistorico('marche');
+		$this->comandos .= "- Marche!"."<br/>";      
+		return $this;
     }
 
     #para a marcha instantes após o comando
     public function alto()
     {
     
-    $this->setHistorico('alto');
-        $this->comandos .= "- Alto!"."<br/>";
-        return $this;
+	    $this->setHistorico('alto');
+		$this->comandos .= "- Alto!"."<br/>";
+		return $this;
     }
 
     #Posição de sentido
     public function sentido()
     {
 
-    $this->setHistorico('sentido');
-        $this->comandos .= "- Sentido!"."<br/>";
-        return $this;
+	    $this->setHistorico('sentido');
+		$this->comandos .= "- Sentido!"."<br/>";
+		return $this;
     }
 
     #Posição de descansar. (Só pode ser realizado a partir da posição de sentido)
     public function descansar()
     {
 
-    $this->setHistorico('descansar');
-        $this->comandos .= "- Descansar!"."<br/>";
-        return $this;
+	    $this->setHistorico('descansar');
+		$this->comandos .= "- Descansar!"."<br/>";
+		return $this;
     }
 
     #Comando de à vontade. (Só pode ser realizado a partir da posição de descançar)
     public function aVontade()
     {
 
-    $this->setHistorico('à vontade');
-        $this->comandos .= "- À vontade!"."<br/>";
-        return $this;
+	    $this->setHistorico('à vontade');
+		$this->comandos .= "- À vontade!"."<br/>";
+		return $this;
 
     }
 
@@ -97,32 +97,32 @@ class OrdemUnida{
     public function frenteRetaguarda()
     {
 
-    $this->setHistorico('frente retaguarda');
-        $this->comandos .= "- Frente para a retaguarda!"."<br/>";
-        return $this;
+	    $this->setHistorico('frente retaguarda');
+		$this->comandos .= "- Frente para a retaguarda!"."<br/>";
+		return $this;
 
     }
 
     public function volver($direcao)
     {
             
-      $this->setHistorico('volver');
+	     $this->setHistorico('volver');
 
-          #utilizando o swit apenas para demonstrar que outras lógicas poderiam ser inseridas no case.
-          switch ($direcao){
+		  #utilizando o swit apenas para demonstrar que outras lógicas poderiam ser inseridas no case.
+		  switch ($direcao){
 
-            case 'esquerda':
-                 $this->comandos .= "- Esquerda volver!<br/>";break;
-                case 'direita':
-                 $this->comandos .= "- Direita volver!<br/>";break;
-            case 'meia volta':
-                 $this->comandos .= "- Meia volta volver!<br/>";break;
-            default:
-                 $this->comandos .= "- Impossível volver para ".$direcao."<br/>";break;
+		    case 'esquerda':
+			 $this->comandos .= "- Esquerda volver!<br/>";break;
+			case 'direita':
+			 $this->comandos .= "- Direita volver!<br/>";break;
+		    case 'meia volta':
+			 $this->comandos .= "- Meia volta volver!<br/>";break;
+		    default:
+			 $this->comandos .= "- Impossível volver para ".$direcao."<br/>";break;
 
-          }
+		  }
 
-        return $this;
+		return $this;
 
     }
 
@@ -131,29 +131,29 @@ class OrdemUnida{
    private function validaComandos()
    {
 
-    for($i = 0; $i < count($this->historico); $i++){
-    
-    	
-         switch ($this->historico[$i]){
+	    for($i = 0; $i < count($this->historico); $i++){
 
-            case 'descansar':
-                  if($this->historico[($i - 1)] != 'sentido')
-                     $this->notificacoes .= "* Comando numero ".$i." [descansar] não pode ser executado, somente executado a partir de [sentido] <br/>";break;
 
-                
-            case 'à vontade':
-                  if($this->historico[($i - 1)] != 'descansar')
-                     $this->notificacoes .= "* Comando numero ".$i."  [à vontade] não pode ser executado, somente executado a partir de [descansar] <br/>";break;
-	     
-            case 'frente retaguarda':
-		  if($this->historico[($i - 1)] != 'descansar')
-		      $this->notificacoes .= "* Comando numero ".$i."  [frente retaguarda] não pode ser executado, somente executado a partir de [descansar] <br/>";break;
-                  
-         }
+		 switch ($this->historico[$i]){
+
+		    case 'descansar':
+			  if($this->historico[($i - 1)] != 'sentido')
+			     $this->notificacoes .= "* Comando numero ".$i." [descansar] não pode ser executado, somente executado a partir de [sentido] <br/>";break;
+
+
+		    case 'à vontade':
+			  if($this->historico[($i - 1)] != 'descansar')
+			     $this->notificacoes .= "* Comando numero ".$i."  [à vontade] não pode ser executado, somente executado a partir de [descansar] <br/>";break;
+
+		    case 'frente retaguarda':
+			  if($this->historico[($i - 1)] != 'descansar')
+			      $this->notificacoes .= "* Comando numero ".$i."  [frente retaguarda] não pode ser executado, somente executado a partir de [descansar] <br/>";break;
+
+		 }
 
     }
 
-    return $this->notificacoes;
+    	return $this->notificacoes;
 
    }
     
@@ -162,8 +162,8 @@ class OrdemUnida{
     public function executar()
     {
 
-    	return $this->comandos.
-	       $this->validaComandos();
+		return $this->comandos.
+		       $this->validaComandos();
 
     }
 
